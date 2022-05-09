@@ -4,10 +4,13 @@ import { useSearchParams, Link } from 'react-router-dom';
 
 export const MoviesPage = () => {
     const [movies, setMovies] = useState('')
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams('');
     const query = searchParams.get('query');
 
     useEffect(() => {
+        if (query === null) {
+            return
+        }
         async function fetchSearchMovie() {
             try {
                 const response = await getSearchMovie(query);
@@ -35,13 +38,16 @@ export const MoviesPage = () => {
 
         {movies && (
             <>
-                <ul>
+                {movies && (
+                    <ul>
                     {movies.map(movie => (
                         <li key={movie.id}>
                             <Link to={`${movie.id}`}>{movie.title}</Link>
                         </li>
                     ))}
                 </ul>
+                
+                )}
             </>
         )}
         </>
