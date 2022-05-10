@@ -1,6 +1,7 @@
 import { getSearchMovie } from 'services/movies-api';
 import { useEffect, useState } from 'react'
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { Form, Input, Button, List, Link, Item } from './MoviesPage.styled';
 
 export const MoviesPage = () => {
     const [movies, setMovies] = useState('')
@@ -27,29 +28,29 @@ export const MoviesPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setSearchParams({ query: e.currentTarget.elements.query.value.trim() });
-
     }
+    
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="query"></input>
-            <button type="submit">Search</button>
-        </form>
+        <main>
+        <Form onSubmit={handleSubmit}>
+            <Input type="text" name="query"></Input>
+            <Button type="submit">Search</Button>
+        </Form>
 
         {movies && (
             <>
                 {movies && (
-                    <ul>
-                    {movies.map(movie => (
-                        <li key={movie.id}>
-                            <Link to={`${movie.id}`}>{movie.title}</Link>
-                        </li>
-                    ))}
-                </ul>
+                    <List>
+                        {movies.map(movie => (
+                            <Item key={movie.id}>
+                                <Link to={`${movie.id}`}>{movie.title}</Link>
+                            </Item>
+                        ))}
+                    </List>
                 
                 )}
             </>
         )}
-        </>
+        </main>
     );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 import { getTrendingMovies } from "services/movies-api";
 import { Loader } from "components/Loader";
+import { Header, List, Link, Item } from './HomePage.style';
 
 const useFetchTrandingMovies = () => {
     const [items, setItems] = useState([])
@@ -29,15 +29,15 @@ export const HomePage = () => {
 
     return (
         <main>
-            <h1>Trending today</h1>
+            <Header>Trending today</Header>
             {loading && <Loader />}
-            <ul>
+            <List>
                 {items.map(item =>
-                    <li key={item.id}>
+                    <Item key={item.id}>
                         <Link to={`/movies/${item.id}`}>{item.title}</Link>
-                    </li>
+                    </Item>
                 )}
-            </ul>
+            </List>
         </main>
     );
 }

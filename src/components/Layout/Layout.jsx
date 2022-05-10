@@ -1,21 +1,6 @@
-import styled from 'styled-components';
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
-
-const Nav = styled.nav`
-    display: flex;
-    gap: 20px;
-`;
-
-const Link = styled(NavLink)`
-    &.active {
-        color: tomato;
-    }
-`;
-
-const Wrapper = styled.div`
-    padding: 40px;
-`;
+import { Nav, Link, Wrapper } from './Layout.styled'
 
 export const Layout = () => {
     return (
