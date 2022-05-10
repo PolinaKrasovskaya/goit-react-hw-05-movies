@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
 import { Nav, Link, Wrapper } from './Layout.styled'
@@ -9,7 +10,9 @@ export const Layout = () => {
                 <Link to="/">Home</Link>
                 <Link to="/movies">Movies</Link>
             </Nav>
-            <Outlet />
+            <Suspense fallback="">
+                <Outlet />
+            </Suspense>
             <Toaster />
         </Wrapper>
     )

@@ -20,7 +20,7 @@ const useFetchTrandingMovies = () => {
         }
         fetchTrandingMovies();
     }, []);
-        console.log(items)
+
     return { items, loading };
 }
 

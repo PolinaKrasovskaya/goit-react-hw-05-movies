@@ -7,6 +7,7 @@ export const Nav = styled.nav`
     display: flex;
     gap: 20px;
     border-bottom: 1px solid #000;
+    margin-bottom: 50px;
 `;
 
 export const Link = styled(NavLink)`

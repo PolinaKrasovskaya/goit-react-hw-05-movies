@@ -1,6 +1,16 @@
+import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { HomePage, MovieDetailsPage, MoviesPage, Cast, Reviews } from 'pages';
+import { Cast, Reviews } from 'pages';
 import { Layout } from 'components/Layout/Layout';
+
+const createChunk = componentName => {
+    return lazy(() =>
+        import(`../pages/${componentName}/${componentName}`).then(module => ({ default: module[componentName]}))
+    );
+}
+const HomePage = createChunk('HomePage');
+const MovieDetailsPage = createChunk('MovieDetailsPage');
+const MoviesPage = createChunk('MoviesPage');
 
 export const App = () => {
     return (

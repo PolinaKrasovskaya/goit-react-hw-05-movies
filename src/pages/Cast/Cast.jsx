@@ -2,19 +2,24 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCast } from 'services/movies-api';
 import { List, Item, Image, Header, Text, Name } from './Cast.styled';
+import { Loader } from 'components/Loader';
 import defaultImg from 'images/default.png';
 
 export const Cast = () => {
     const { movieId } = useParams();
     const [actors, setActors] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchCast() {
             try {
                 const response= await getCast(movieId);
                 setActors(response);
+                setLoading(true);
             } catch (error) {
                 console.log('Error!')
+            } finally {
+                setLoading(false);
             }
         }
         fetchCast()
@@ -24,6 +29,7 @@ export const Cast = () => {
 
     return (
         <List>
+            {loading && <Loader/> }
             {actors.map(actor =>
                 <Item key={actor.id}>
                     <Image src={actor.profile_path

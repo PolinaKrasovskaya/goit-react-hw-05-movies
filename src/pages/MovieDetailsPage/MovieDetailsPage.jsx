@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Outlet } from "react-router-dom";
+import { useParams, Outlet, useLocation } from "react-router-dom";
 import { getMovie } from "services/movies-api";
-import { Button, Article, Image, Description, ItemTitle,
+import { Article, Image, Description, ItemTitle,
         Header, Text, TextGenres, Navigation, Additional, Link 
         } from './MovieDetailsPage.styled';
 
 export const MovieDetailsPage = () => {
     const { movieId } = useParams();
-    const navigate = useNavigate();
     const [item, setItem ] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         async function fetchMovie() {
@@ -20,19 +20,9 @@ export const MovieDetailsPage = () => {
         fetchMovie();
     }, [movieId]);
 
-    const goBack = () => {
-        navigate('/');
-    }
-
-    console.log(item);
-
     return (
         <main>
-            <Button
-                onClick={goBack}
-            >
-                Go back
-            </Button>
+            <Link to={location?.state?.from ?? '/'}>Go back</Link>
             {item && 
                 <Article>
                     <Image 
@@ -46,7 +36,7 @@ export const MovieDetailsPage = () => {
                         <Text>{item.overview}</Text>
                         <Header>Genres</Header>
                         {item.genres.map(genre => (
-                            <TextGenres key={genre.id}>{genre.name}</TextGenres>
+                            <TextGenres key={genre.id}>{genre.name}<br/></TextGenres>
                         ))}
                     </Description>
                 </Article>
