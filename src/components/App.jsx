@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Cast, Reviews } from 'pages';
 import { Layout } from 'components/Layout/Layout';
 
 const createChunk = componentName => {
@@ -11,6 +10,8 @@ const createChunk = componentName => {
 const HomePage = createChunk('HomePage');
 const MovieDetailsPage = createChunk('MovieDetailsPage');
 const MoviesPage = createChunk('MoviesPage');
+const Cast = createChunk('Cast');
+const Reviews = createChunk('Reviews');
 
 export const App = () => {
     return (
