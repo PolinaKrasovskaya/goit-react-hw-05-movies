@@ -40,7 +40,7 @@ export const MoviesPage = () => {
     }
     
     const handleChange = event => {
-        const searchQuery = event.currentTarget.value.toLowerCase();
+        const searchQuery = event.currentTarget.value.toLowerCase().trim();
         setSearch(searchQuery);       
     };
 
