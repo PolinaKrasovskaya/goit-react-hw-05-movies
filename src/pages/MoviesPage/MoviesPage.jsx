@@ -71,7 +71,8 @@ export const MoviesPage = () => {
 }
 
 
-
+// Пришлось переделать со стейтом search, потому что не получалось не отправлять пустой запрос. 
+// Но этот вариант мне больше нравится (на разбор)
 // import { getSearchMovie } from 'services/movies-api';
 // import { useEffect, useState } from 'react'
 // import { useSearchParams, useLocation } from 'react-router-dom';
